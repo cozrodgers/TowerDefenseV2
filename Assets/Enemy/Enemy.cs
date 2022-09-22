@@ -12,10 +12,6 @@ public class Enemy : MonoBehaviour
         bank = FindObjectOfType<Bank>();
     }
 
-    void Update()
-    {
-
-    }
     public void RewardGold()
     {
         if (bank == null)
