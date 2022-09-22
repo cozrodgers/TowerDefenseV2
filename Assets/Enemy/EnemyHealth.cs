@@ -5,7 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyHealth : MonoBehaviour
 {
+	Color originalColor = Color.white;
+	
     [SerializeField] int difficultyRamp = 1;
+	[SerializeField] MeshRenderer mr;
 
     [Tooltip("Adds amount to maxHitPoints when enemy dies")]
 
@@ -15,11 +18,16 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
+		mr = GetComponentInChildren<MeshRenderer>();
         enemy = GetComponent<Enemy>();
     }
     void OnEnable()
     {
         //set default health
+		//set to originalColor onEnable 
+		if(mr != null){
+			mr.material.color = originalColor;
+		}
         currentHitPoints = maxHitPoints;
     }
     void OnParticleCollision(GameObject hit)
@@ -35,6 +43,9 @@ public class EnemyHealth : MonoBehaviour
     }
     void ProcessHit(int hitpoints)
     {
+
+		// cause color blink on the the mesh renderer
+		StartCoroutine(EnemyFlash());
         currentHitPoints -= hitpoints;
         Debug.Log($"Taking a hit of {hitpoints}");
     }
@@ -46,4 +57,12 @@ public class EnemyHealth : MonoBehaviour
 
         }
     }
+ public IEnumerator EnemyFlash()
+ 
+    {
+        mr.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        mr.material.color = originalColor; 
+        StopCoroutine("EnemyFlash");
+    } 
 }
