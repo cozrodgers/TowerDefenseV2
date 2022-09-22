@@ -73,3 +73,4 @@ crashlytics-build.properties
 
 # Force include scene hierarchy
 !/[Ll]ibrary/LastSceneManagerSetup.txt
+
