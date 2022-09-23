@@ -60,20 +60,21 @@ public class Pathfinder : MonoBehaviour
             {
                 neighbors.Add(grid[neighborCoords]);
             }
-            // loop over the neighbors we found in the grid and add them to the frontier
-            foreach (Node neighbor in neighbors)
+        }
+        // loop over the neighbors we found in the grid and add them to the frontier
+        foreach (Node neighbor in neighbors)
+        {
+            //check if already reached and whether the node is walkable or not
+            if (!reachedDictionary.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
             {
-                //check if already reached and whether the node is walkable or not
-                if (!reachedDictionary.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
-                {
-                    neighbor.connectedTo = currentSearchNode;
-                    //add the neighbor to frontier and reached dict
-                    reachedDictionary.Add(neighbor.coordinates, neighbor);
-                    frontier.Enqueue(neighbor);
+                neighbor.connectedTo = currentSearchNode;
+                //add the neighbor to frontier and reached dict
+                reachedDictionary.Add(neighbor.coordinates, neighbor);
+                frontier.Enqueue(neighbor);
 
-                }
             }
         }
+
     }
     void BreadthFirstSearch(Vector2Int coords)
     {
@@ -87,7 +88,7 @@ public class Pathfinder : MonoBehaviour
         bool isRunning = true;
 
         frontier.Enqueue(grid[coords]);
-        reachedDictionary.Add(startCoords, grid[coords]);
+        reachedDictionary.Add(coords, grid[coords]);
 
         while (frontier.Count > 0 && isRunning)
         {
