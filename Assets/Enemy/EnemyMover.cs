@@ -36,6 +36,7 @@ public class EnemyMover : MonoBehaviour
             Debug.Log("Resetting from current pos");
            coords = gridManager.GetCoordinatesFromPosition(transform.position);
         }
+        //get the new path before we move to it
         StopAllCoroutines();
         Debug.Log("Here");
         path.Clear();
