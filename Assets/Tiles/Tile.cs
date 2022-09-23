@@ -33,9 +33,15 @@ public class Tile : MonoBehaviour, IPointerExitHandler, IPointerClickHandler
     {
         if (gridManager.GetNode(coords).isWalkable && !pathfinder.WillBlockPath(coords))
         {
-            bool isPlaced = towerPf.CreateTower(towerPf, transform.position);
-            isPlaceable = !isPlaced;
-            gridManager.BlockNode(coords);
+            bool isSuccessful = towerPf.CreateTower(towerPf, transform.position);
+
+            if (isSuccessful)
+            {
+                Debug.Log("Successfull tower placement");
+                gridManager.BlockNode(coords);
+                pathfinder.NotifyReceivers();
+
+            }
         }
     }
 

@@ -57,6 +57,7 @@ public class GridManager : MonoBehaviour
         Vector2Int coordinates = new Vector2Int();
         coordinates.x = Mathf.RoundToInt(position.x / unityGridSize);
         coordinates.y = Mathf.RoundToInt(position.z / unityGridSize);
+        Debug.Log(coordinates);
         return coordinates;
     }
     public Vector3 GetPositionFromCoordinates(Vector2Int coords)

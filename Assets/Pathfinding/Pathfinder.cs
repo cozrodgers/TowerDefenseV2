@@ -41,8 +41,12 @@ public class Pathfinder : MonoBehaviour
     }
     public List<Node> GetNewPath()
     {
+        return GetNewPath(startCoords);
+    }
+    public List<Node> GetNewPath(Vector2Int coords)
+    {
         gridManager.ResetNodes();
-        BreadthFirstSearch();
+        BreadthFirstSearch(coords);
         return BuildPath();
     }
     void ExploreNeighbors()
@@ -71,7 +75,7 @@ public class Pathfinder : MonoBehaviour
             }
         }
     }
-    void BreadthFirstSearch()
+    void BreadthFirstSearch(Vector2Int coords)
     {
 
         startNode.isWalkable = true;
@@ -82,14 +86,13 @@ public class Pathfinder : MonoBehaviour
 
         bool isRunning = true;
 
-        frontier.Enqueue(startNode);
-        reachedDictionary.Add(startCoords, startNode);
+        frontier.Enqueue(grid[coords]);
+        reachedDictionary.Add(startCoords, grid[coords]);
 
         while (frontier.Count > 0 && isRunning)
         {
-            //set the current search node to the next node in the frontier list
-            currentSearchNode = frontier.Dequeue();
-            // set the current node to explored
+            //set the current search node to the next node in the frontier lis
+            currentSearchNode = frontier.Dequeue(); // set the current node to explored
             currentSearchNode.isExplored = true;
             // add all the neighbors
             ExploreNeighbors();
@@ -114,11 +117,13 @@ public class Pathfinder : MonoBehaviour
             currentNode = currentNode.connectedTo;
             path.Add(currentNode);
             currentNode.isPath = true;
+            Debug.Log(path.Count);
 
         }
         path.Reverse();
         return path;
     }
+
 
     public bool WillBlockPath(Vector2Int coords)
     {
@@ -145,4 +150,9 @@ public class Pathfinder : MonoBehaviour
         return false;
     }
 
+    public void NotifyReceivers()
+    {
+        BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver);
+
+    }
 }

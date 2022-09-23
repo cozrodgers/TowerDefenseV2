@@ -490,6 +490,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 701929395}
     m_Modifications:
+    - target: {fileID: 4895882249334943551, guid: f8b700eaa390b0046b16139b640ce60d, type: 3}
+      propertyPath: isPlaceable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6463512978129206055, guid: f8b700eaa390b0046b16139b640ce60d, type: 3}
       propertyPath: m_text
       value: 8,3
@@ -3149,6 +3153,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 701929395}
     m_Modifications:
+    - target: {fileID: 4895882249334943551, guid: f8b700eaa390b0046b16139b640ce60d, type: 3}
+      propertyPath: isPlaceable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6463512978129206055, guid: f8b700eaa390b0046b16139b640ce60d, type: 3}
       propertyPath: m_text
       value: 5,4
@@ -6751,6 +6759,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 701929395}
     m_Modifications:
+    - target: {fileID: 4895882249334943551, guid: f8b700eaa390b0046b16139b640ce60d, type: 3}
+      propertyPath: isPlaceable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6463512978129206055, guid: f8b700eaa390b0046b16139b640ce60d, type: 3}
       propertyPath: m_text
       value: 12,3
@@ -10870,7 +10882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unityGridSize: 10
-  gridSize: {x: 16, y: 16}
+  gridSize: {x: 18, y: 10}
 --- !u!4 &1442295097
 Transform:
   m_ObjectHideFlags: 0
