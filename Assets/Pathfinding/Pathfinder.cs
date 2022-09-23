@@ -5,7 +5,15 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     [SerializeField] Vector2Int startCoords;
+    public Vector2Int StartCoords
+    {
+        get
+        {
+            return startCoords;
+        }
+    }
     [SerializeField] Vector2Int destinationCoords;
+    public Vector2Int DestinationCoords { get { return destinationCoords; } }
     Node startNode;
     Node destinationNode;
     [SerializeField] Node currentSearchNode;
@@ -21,12 +29,13 @@ public class Pathfinder : MonoBehaviour
         if (gridManager != null)
         {
             grid = gridManager.Grid;
+            startNode = grid[startCoords];
+            destinationNode = grid[destinationCoords];
+            //Set start and destination nodes as walkable 
         }
     }
     void Start()
     {
-        startNode = gridManager.Grid[startCoords];
-        destinationNode = gridManager.Grid[destinationCoords];
         GetNewPath();
 
     }
@@ -64,6 +73,9 @@ public class Pathfinder : MonoBehaviour
     }
     void BreadthFirstSearch()
     {
+
+        startNode.isWalkable = true;
+        destinationNode.isWalkable = true;
         //clear frontier and reached;
         frontier.Clear();
         reachedDictionary.Clear();

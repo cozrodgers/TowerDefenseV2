@@ -19,7 +19,7 @@ public class CoordinateLabeler : MonoBehaviour
     {
         gridManager = FindObjectOfType<GridManager>();
         label = GetComponent<TextMeshPro>();
-        label.enabled = false;
+        label.enabled = true;
         DisplayCoordinates();
 
     }
@@ -33,6 +33,7 @@ public class CoordinateLabeler : MonoBehaviour
             UpdateObjectName();
         }
         ToggleLabels();
+    
         SetLabelColor();
         
     }
